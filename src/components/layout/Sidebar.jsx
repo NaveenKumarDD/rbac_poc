@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-const navItems = []
+const navItems = [{ to: '/create-permission', label: 'Create Permission' }]
 
 export default function Sidebar() {
   return (
