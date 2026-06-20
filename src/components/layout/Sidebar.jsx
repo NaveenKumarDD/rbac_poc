@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 const navItems = [
   { to: '/create-permission', label: 'Create Permission' },
+  { to: '/role-management', label: 'Role Management' },
   { to: '/role-bundle-management', label: 'Role Bundle Management' },
 ]
 
