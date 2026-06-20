@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import CreatePermissionPage from './pages/CreatePermissionPage'
+import RoleBundleManagementPage from './pages/RoleBundleManagementPage'
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <Route element={<Layout />}>
           <Route index element={<Navigate to="/create-permission" replace />} />
           <Route path="create-permission" element={<CreatePermissionPage />} />
+          <Route path="role-bundle-management" element={<RoleBundleManagementPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
