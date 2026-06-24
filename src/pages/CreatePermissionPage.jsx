@@ -6,7 +6,7 @@ import { buildCreatePermissionRequest } from '../utils/permissionPayload'
 
 const TYPE_OPTIONS = ['MOBILE', 'WEB']
 
-const TAG_OPTIONS = ['Button', 'Page']
+const TAG_OPTIONS = ['Button', 'Page', 'Screen']
 
 const defaultValues = {
   name: '',
