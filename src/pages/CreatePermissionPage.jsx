@@ -22,6 +22,7 @@ export default function CreatePermissionPage() {
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
+  const [createdRbacKey, setCreatedRbacKey] = useState(null)
 
   const {
     register,
@@ -65,14 +66,17 @@ export default function CreatePermissionPage() {
     setSubmitting(true)
     setSubmitError(null)
     setSuccessMessage(null)
+    setCreatedRbacKey(null)
 
     try {
       const payload = buildCreatePermissionRequest(values, roleBundles)
       const { data } = await createPermission(payload)
+      const created = data?.data
 
-      console.log(data?.data ?? payload)
+      console.log(created ?? payload)
       reset(defaultValues)
       setSuccessMessage('Permission created successfully.')
+      setCreatedRbacKey(created?.rbac ?? payload.rbac ?? null)
     } catch (err) {
       setSubmitError(err.message)
     } finally {
@@ -91,7 +95,12 @@ export default function CreatePermissionPage() {
           <div className="space-y-4 px-6 py-5">
             {successMessage && (
               <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-                {successMessage}
+                <p>{successMessage}</p>
+                {createdRbacKey && (
+                  <p className="mt-2 break-all font-mono text-xs text-emerald-800">
+                    RBAC Key: {createdRbacKey}
+                  </p>
+                )}
               </div>
             )}
 
