@@ -1,0 +1,25 @@
+# Vite SPA. VITE_* values are inlined at build time — change VITE_API_BASE_URL and redeploy to point elsewhere.
+services:
+  - type: web
+    name: rbac-poc
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "22.14.0"
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
+      - key: VITE_API_BASE_URL
+        value: https://muone-hr-backend-dev-ggoqswadia-el.a.run.app/api/v1
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
