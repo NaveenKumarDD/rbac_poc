@@ -1,0 +1,14 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - --build-arg
+      - VITE_API_BASE_URL=${_VITE_API_BASE_URL}
+      - -t
+      - ${_IMAGE}
+      - .
+images:
+  - ${_IMAGE}
+substitutions:
+  _VITE_API_BASE_URL: https://muone-hr-backend-dev-ggoqswadia-el.a.run.app/api/v1
+  _IMAGE: asia-south1-docker.pkg.dev/muone-qtap/cloud-run-source-deploy/rbac-poc-dev:latest
